@@ -23,6 +23,7 @@ package net.kyori.blossom;
 
 import com.google.common.collect.ImmutableMap;
 import net.kyori.blossom.task.BuiltInSourceReplacementTasks;
+import net.kyori.blossom.task.KotlinSourceReplacementTask;
 import net.kyori.blossom.task.SourceReplacementTask;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -71,6 +72,10 @@ public final class Blossom implements Plugin<Project> {
 
     if(this.project.getPlugins().hasPlugin("groovy")) {
       BuiltInSourceReplacementTasks.setupGroovy(this, mainSourceSet);
+    }
+
+    if(this.project.getPlugins().hasPlugin("kotlin")) {
+      KotlinSourceReplacementTask.setup(this, mainSourceSet);
     }
   }
 
